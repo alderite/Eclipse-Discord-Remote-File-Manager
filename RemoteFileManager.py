@@ -7,7 +7,7 @@ from threading import Thread
 import json
 import time
 
-__serverIP__ = '10.28.120.133' #IP Address of server
+__serverIP__ = ''  #IP Address of host
 __PORT__ = ""  # leave this blank if u don't know what it means
 
 

