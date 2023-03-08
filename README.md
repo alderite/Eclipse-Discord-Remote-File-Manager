@@ -5,6 +5,9 @@ Program that can remotely view  download, edit, delete files, and more.
 This project was created only for good purposes and personal use.
 By using Eclipse Discord Remote File Manager, you agree that you hold responsibility and accountability of any consequences caused by your actions.
 
+## Diclaimer
+- Eclipse Discord File Manager is in beta and is made with dogshit code! if you find any bugs just dm me @lucedrop#5591 and lmk
+
 ### Currently not detected by VirusTotal 
 
 https://www.virustotal.com/gui/file/f3008a01a4e3dc945830ec6a6357a4b8f3d522456824f7f9a6390f87151ee1f3?nocache=1
