@@ -7,7 +7,7 @@ https://www.virustotal.com/gui/file/f3008a01a4e3dc945830ec6a6357a4b8f3d522456824
 
 
 ## Eclipse Discord Remote File Manager was made for EDUCATIONAL PURPOSES ONLY!
-This project was created only for good purposes and personal use.
+This project was created *only* for *education* and *personal use*.
 By using Eclipse Discord Remote File Manager, you agree that you hold responsibility and accountability of any consequences caused by your actions.
 
 ## Disclaimer 
